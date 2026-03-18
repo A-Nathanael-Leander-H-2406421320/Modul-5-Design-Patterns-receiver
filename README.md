@@ -66,7 +66,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Create Notification database and Notification repository struct skeleton.`
     -   [x] Commit: `Implement add function in Notification repository.`
     -   [x] Commit: `Implement list_all_as_string function in Notification repository.`
-    -   [ ] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
@@ -85,5 +85,17 @@ This is the place for you to write reflections:
 ### Mandatory (Subscriber) Reflections
 
 #### Reflection Subscriber-1
+
+1. In this tutorial, we used `RwLock<>` to synchronise the use of `Vec` of `Notification`s. Explain why it is necessary for this case, and explain why we do not use `Mutex<>` instead?
+
+    **Answer**:
+
+    We use `RwLock<>` because it allows multiple readers to access the `Vec` of `Notification`s simultaneously, while still ensuring that only one writer can modify it at a time. This is beneficial in scenarios where read operations are more frequent than write operations, as it can improve performance by allowing concurrent reads. On the other hand, `Mutex<>` would only allow one thread to access the `Vec` at a time, regardless of whether it's a read or write operation, which could lead to unnecessary blocking and reduced performance when there are many read operations.
+
+2. In this tutorial, we used `lazy_static` external library to define `Vec` and `DashMap` as a "static" variable. Compared to Java where we can mutate the content of a static variable via a `static` function, why did not Rust allow us to do so?
+
+    **Answer**:
+
+    Rust does not allow direct mutation of static variables because it would introduce data races and make the program's behavior unpredictable (it requires an `unsafe` block). Instead, Rust provides mechanisms like `RwLock<>` and `Mutex<>` to safely manage concurrent access to shared data, ensuring memory safety without sacrificing performance.
 
 #### Reflection Subscriber-2
