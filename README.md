@@ -77,7 +77,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement receive function in Notification controller.`
     -   [x] Commit: `Implement list_messages function in Notification service.`
     -   [x] Commit: `Implement list function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Subscriber-2" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Subscriber-2" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -99,3 +99,24 @@ This is the place for you to write reflections:
     Rust does not allow direct mutation of static variables because it would introduce data races and make the program's behavior unpredictable (it requires an `unsafe` block). Instead, Rust provides mechanisms like `RwLock<>` and `Mutex<>` to safely manage concurrent access to shared data, ensuring memory safety without sacrificing performance.
 
 #### Reflection Subscriber-2
+
+1. Have you explored things outside of the steps in the tutorial, for example: src/lib.rs? If not, explain why you did not do so. If yes, explain things that you have learned from those other parts of code.
+
+    **Answer**:
+
+    Yes, I have explored `src/lib.rs` and I learned that it serves as the main entry point for the application. It sets up the Rocket web server and mounts the routes defined in the controllers. This file is crucial for initializing the application and ensuring that all components are properly connected and ready to handle incoming requests. In adddition of that, it also defines custom data types such as `Result` and `Error` that are used throughout the application for error handling and response management. This exploration helped me understand how the different modules interact with each other and how the overall architecture of the application is structured.
+
+2. Since you have completed the tutorial by now and have tried to test your notification system by spawning multiple instances of Receiver, explain how Observer pattern eases you to plug in more subscribers. How about spawning more than one instance of Main app, will it still be easy enough to add to the system?
+
+    **Answer**:
+
+    The Observer pattern allows for a decoupled design where the main app (the subject) can notify multiple subscribers (observers) without needing to know the details of each subscriber. This makes it easy to add more subscribers to the system, as they can simply subscribe to the notifications they are interested in without affecting the main app's functionality. 
+
+    However, spawning more than one instance of the main app could introduce complexity, as each instance would need to manage its own set of subscribers and ensure that notifications are sent to the correct subscribers. It would require additional coordination between the instances of the main app to ensure that they are aware of each other's subscribers and can properly route notifications. While it is still possible to add more instances of the main app, it may require additional design considerations to maintain a clean and efficient architecture.
+
+3. Have you tried to make your own Tests, or enhance documentation on your Postman collection? If you have tried those features, tell us whether it is useful for your work (it can be your tutorial work or your Group Project).
+
+
+    **Answer**:
+
+    I haven't tried to make my own Tests or enhance documentation on the Postman collection yet because the default tests are enough. However, I believe that creating tests and improving documentation would be very useful for my work. Tests would help ensure that the functionality of the notification system is working as expected and would allow me to catch any bugs or issues early on. Enhancing the documentation in the Postman collection would also make it easier for others to understand how to use the API and test it effectively, which could be beneficial for collaboration in group projects. Overall, I think these features would contribute to a more robust and user-friendly application.
